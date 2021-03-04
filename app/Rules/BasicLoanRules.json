@@ -1,0 +1,56 @@
+[
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "requestedAmount",
+          "operator": "greaterThan",
+          "value": 50000
+        }
+      ]
+    },
+    "event": {
+      "type": "fouledOut",
+      "params": {
+        "status": "declined",
+        "message": "Sorry, the loan is not viable."
+      }
+    }
+  },
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "requestedAmount",
+          "operator": "equal",
+          "value": 50000
+        }
+      ]
+    },
+    "event": {
+      "type": "fouledOut",
+      "params": {
+        "status": "undecided",
+        "message": "The request must be analyzed by an agent."
+      }
+    }
+  },
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "requestedAmount",
+          "operator": "lessThan",
+          "value": 50000
+        }
+      ]
+    },
+    "event": {
+      "type": "fouledOut",
+      "params": {
+        "status": "approved",
+        "message": "Congratulations, the loan has been approved!"
+      }
+    }
+  }
+]
